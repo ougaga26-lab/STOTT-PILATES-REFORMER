@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STOTT PILATES - REFORMER 動作複習</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --bg:#0e0e0f; 
+    --surface:#1a1a1c; 
+    --surface2:#232325;
+    --accent:#c8f0d4; 
+    --accent-dim:rgba(200,240,212,0.12); 
+    --accent-glow:rgba(200,240,212,0.25);
+    --text:#e8e8ea; 
+    --text-dim:#7a7a80;
+    --gold:#f0d48a; 
+    --gold-dim:rgba(240,212,138,0.12);
+  }
+  
+  * { 
+    margin:0; 
+    padding:0; 
+    box-sizing:border-box; 
+  }
+  
+  body {
+    font-family:'DM Sans',sans-serif;
+    background:var(--bg); 
+    color:var(--text);
+    min-height:100vh; 
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .container {
+    max-width:560px;
+    width:100%;
+    padding:48px 24px;
+  }
+
+  /* 主標題區 */
+  .main-header {
+    text-align:center;
+    margin-bottom:16px;
+  }
+
+  .brand-title {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(1.1rem, 3vw, 1.3rem);
+    font-weight:600;
+    letter-spacing:0.15em;
+    color:var(--text-dim);
+    margin-bottom:8px;
+    text-transform:uppercase;
+  }
+
+  .main-title {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2.5rem, 8vw, 3.5rem);
+    font-weight:700;
+    letter-spacing:0.05em;
+    color:var(--accent);
+    margin-bottom:20px;
+    line-height:1.1;
+  }
+
+  .subtitle {
+    font-size:1rem;
+    color:var(--text-dim);
+    font-weight:400;
+    letter-spacing:0.08em;
+    margin-bottom:48px;
+  }
+
+  /* 卡片容器 */
+  .cards-container {
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    margin-bottom:32px;
+  }
+
+  /* 卡片樣式 */
+  .level-card {
+    position:relative;
+    padding:32px 28px;
+    border-radius:20px;
+    background:var(--surface);
+    border:2px solid var(--surface2);
+    cursor:pointer;
+    transition:all 0.3s ease;
+    text-decoration:none;
+    display:block;
+    overflow:hidden;
+  }
+
+  .level-card::before {
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:linear-gradient(135deg, transparent 0%, var(--accent-dim) 100%);
+    opacity:0;
+    transition:opacity 0.3s ease;
+  }
+
+  .level-card:hover::before {
+    opacity:1;
+  }
+
+  .level-card:hover {
+    border-color:var(--accent);
+    transform:translateY(-4px);
+    box-shadow:0 8px 24px var(--accent-glow);
+  }
+
+  .level-card:active {
+    transform:translateY(-2px);
+  }
+
+  .card-content {
+    position:relative;
+    z-index:1;
+  }
+
+  .card-label {
+    font-size:0.75rem;
+    color:var(--text-dim);
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+    font-weight:500;
+  }
+
+  .card-title {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(1.6rem, 4vw, 2rem);
+    font-weight:700;
+    color:var(--accent);
+    margin-bottom:12px;
+    letter-spacing:0.02em;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+
+  .card-arrow {
+    font-size:1.4rem;
+    opacity:0.7;
+    transition:transform 0.3s ease;
+  }
+
+  .level-card:hover .card-arrow {
+    transform:translateX(4px);
+  }
+
+  .card-description {
+    font-size:0.9rem;
+    line-height:1.6;
+    color:var(--text-dim);
+  }
+
+  /* 進階卡片特殊樣式 */
+  .level-card.advanced {
+    border-color:rgba(240,212,138,0.3);
+  }
+
+  .level-card.advanced::before {
+    background:linear-gradient(135deg, transparent 0%, var(--gold-dim) 100%);
+  }
+
+  .level-card.advanced:hover {
+    border-color:var(--gold);
+    box-shadow:0 8px 24px rgba(240,212,138,0.2);
+  }
+
+  .level-card.advanced .card-title {
+    color:var(--gold);
+  }
+
+  /* 底部品牌 */
+  .footer-brand {
+    display:flex; 
+    align-items:center; 
+    gap:8px; 
+    justify-content:center;
+    margin-top:32px; 
+    padding-top:20px;
+    border-top:1px solid var(--surface2);
+  }
+  
+  .footer-text {
+    font-size:0.75rem; 
+    color:var(--text-dim); 
+    letter-spacing:0.05em;
+  }
+  
+  .footer-logo {
+    height:24px; 
+    width:auto; 
+    opacity:0.8;
+  }
+
+  /* 響應式調整 */
+  @media (min-width: 640px) {
+    .container {
+      padding:64px 32px;
+    }
+
+    .cards-container {
+      gap:24px;
+    }
+
+    .level-card {
+      padding:36px 32px;
+    }
+  }
+
+  /* 載入動畫 */
+  @keyframes fadeInUp {
+    from {
+      opacity:0;
+      transform:translateY(20px);
+    }
+    to {
+      opacity:1;
+      transform:translateY(0);
+    }
+  }
+
+  .main-header {
+    animation:fadeInUp 0.6s ease-out;
+  }
+
+  .level-card:nth-child(1) {
+    animation:fadeInUp 0.6s ease-out 0.1s backwards;
+  }
+
+  .level-card:nth-child(2) {
+    animation:fadeInUp 0.6s ease-out 0.2s backwards;
+  }
+
+  .footer-brand {
+    animation:fadeInUp 0.6s ease-out 0.3s backwards;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <!-- 主標題區 -->
+    <div class="main-header">
+      <div class="brand-title">STOTT PILATES</div>
+      <h1 class="main-title">REFORMER</h1>
+      <div class="subtitle">動作複習小教室</div>
+    </div>
+
+    <!-- 卡片區 -->
+    <div class="cards-container">
+      <!-- 基礎卡片 -->
+      <a href="https://ougaga26-lab.github.io/REFORMER-BASIC/" class="level-card">
+        <div class="card-content">
+          <div class="card-label">Level 1</div>
+          <h2 class="card-title">
+            基礎複習
+            <span class="card-arrow">→</span>
+          </h2>
+          <p class="card-description">
+            適合初學者與複習基本動作，建立扎實的 Reformer 基礎
+          </p>
+        </div>
+      </a>
+
+      <!-- 進階卡片 -->
+      <a href="https://ougaga26-lab.github.io/REFORMER-ADVANCE/" class="level-card advanced">
+        <div class="card-content">
+          <div class="card-label">Level 2</div>
+          <h2 class="card-title">
+            進階複習
+            <span class="card-arrow">→</span>
+          </h2>
+          <p class="card-description">
+            挑戰更複雜的動作組合，提升技巧與身體控制能力
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <!-- 底部品牌 -->
+    <div class="footer-brand">
+      <span class="footer-text">
+        Power by 
+        <a href="https://user77979.pse.is/8ntn4r" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:underline;">
+          SCTA
+        </a>
+      </span>
+      <img src="https://raw.githubusercontent.com/ougaga26-lab/REFORMER-BASIC/main/STCALOGO.png" alt="SCTA" class="footer-logo">
+    </div>
+  </div>
+</body>
+</html>
